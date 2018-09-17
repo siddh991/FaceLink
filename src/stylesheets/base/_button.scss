@@ -1,0 +1,110 @@
+$hover-colors: ();
+@function hover-color-add($name, $normal-bg, $hover-bg, $normal-color:$white, $hover-color:$white) {
+  $new-map-item: (
+    #{$name}: (
+      norm-bg: $normal-bg,
+      norm-color: $normal-color,
+      hover-bg: $hover-bg,
+      hover-color: $hover-color
+    )
+  );
+  @return map-merge($hover-colors, $new-map-item);
+}
+
+$hover-colors: hover-color-add("primary", $orange, $orange-hover);
+$hover-colors: hover-color-add("blue", $blue-light, $blue);
+$hover-colors: hover-color-add("green", $color-c6, $color-c6-hover);
+$hover-colors: hover-color-add("white1", $white, $menu-gray, $red, $red);
+$hover-colors: hover-color-add("white2", $white, $menu-gray, $orange, $orange);
+$hover-colors: hover-color-add("white3", $white, $menu-gray, $black, $black);
+$hover-colors: hover-color-add("white4", $white, $orange, $orange, $white);
+
+.btn {
+  text-decoration: none !important;
+  white-space: normal;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: $white;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 50px;
+  padding-top: 1px !important;
+  letter-spacing: 1.1px;
+  border: 0;
+  &.focus,
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.btn-custom {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    transition: width .3s cubic-bezier(.75, 0, .125, 1);
+  }
+  span:nth-child(1) {
+    position: relative;
+    z-index: -1;
+    width: 100%;
+  }
+  span:nth-child(2) {
+    @include position(absolute, $left: 0, $top: 0, $index: 4);
+    padding: inherit;
+    padding-right: 0;
+    text-align: left;
+    width: .0001%;
+  }
+  &::before {
+    @include position(absolute, $top:0, $right:0);
+    @include sizeEx(100%);
+    content: "";
+    transition: transform .3s cubic-bezier(.75, 0, .125, 1);
+    transform: translate3d(-101%, 0, 0);
+  }
+  &:hover,
+  &:not(:disabled):active:focus {
+    box-shadow: none !important;
+    &::before {
+      transform: translate3d(0, 0, 0);
+    }
+    span:nth-child(1) {
+      width: .0001%;
+    }
+    span:nth-child(2) {
+      width: 100%;
+    }
+  }
+}
+
+html.firefox {
+  .btn-custom {
+    padding-top: 0 !important;
+  }
+}
+
+@each $hover-color-name, $hover-color-settings in $hover-colors {
+  .btn-custom-#{$hover-color-name} {
+    background: map-get($hover-color-settings, norm-bg);
+    span:nth-child(1) {
+      color: map-get($hover-color-settings, norm-color);
+    }
+    span:nth-child(2) {
+      color: map-get($hover-color-settings, hover-color);
+    }
+    &::before {
+      background: map-get($hover-color-settings, hover-bg);
+    }
+    &:hover,
+    &:not(:disabled):active:focus {
+      color: map-get($hover-color-settings, hover-color);
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  //min-width: 481px
+}

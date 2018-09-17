@@ -1,0 +1,85 @@
+<!-- begin header -->
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, viewport-fit=cover" />
+  <title>{% block title %}{{ title }}{% endblock %}</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/custom-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+  <!-- Facebook Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/page.html">
+  <meta property="og:title" content="Content Title">
+  <meta property="og:image" content="https://example.com/image.jpg">
+  <meta property="og:description" content="Description Here">
+  <meta property="og:site_name" content="Site Name">
+  <meta property="og:locale" content="en_US">
+  <!-- Next tags are optional but recommended -->
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@site_account">
+  <meta name="twitter:creator" content="@individual_account">
+  <meta name="twitter:url" content="https://example.com/page.html">
+  <meta name="twitter:title" content="Content Title">
+  <meta name="twitter:description" content="Content description less than 200 characters">
+  <meta name="twitter:image" content="https://example.com/image.jpg">
+  <link href='//fonts.googleapis.com' rel='dns-prefetch' crossorigin />
+  <link href='//cdnjs.cloudflare.com' rel='dns-prefetch' crossorigin />
+  <link href='//fonts.googleapis.com' rel='preconnect' crossorigin />
+  <link href='//cdnjs.cloudflare.com' rel='preconnect' crossorigin />
+  {% include "layouts/loadcss.html" %}
+  {% block head %}{% endblock %}
+</head>
+
+<body {% block bodyClass %}{% endblock %}>
+  <div id="wrapper">
+    {% block header %}
+    {% include "modules/global/header.html" %}
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+    {% block footer %}
+    {% if footer != true %}
+    {% include "modules/global/footer.html" %}
+    {% endif %}
+    {% include "modules/global/no-script.html" %}
+    {% endblock %}
+    {% block javascript %}
+    {% include "modules/global/javascript.html" %}
+    {% endblock %}
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+
+  <!-- Firebase App is always required and must be first -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-app.js"></script>
+
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-functions.js"></script>
+
+  <!-- Comment out (or don't include) services that you don't want to use -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-storage.js"></script> -->
+  <script>
+    // Initialize Firebase
+    var main_app = firebase.initializeApp({
+      apiKey: "AIzaSyB2vugIYEU481Kz7_d8Y0D0LBiZhF4XiLk",
+      authDomain: "facelink-70d35.firebaseapp.com",
+      databaseURL: "https://facelink-70d35.firebaseio.com",
+      projectId: "facelink-70d35",
+      storageBucket: "facelink-70d35.appspot.com",
+      messagingSenderId: "995182779969"
+    });
+  </script>
+</body>
+</html>
+<!-- end footer -->

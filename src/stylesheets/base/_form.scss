@@ -1,0 +1,98 @@
+.form-control {
+  position: relative;
+  height: 40px;
+  appearance: none;
+  font-weight: 700;
+  font-size: 18px;
+  border: none;
+}
+
+textarea.form-control {
+  resize: none;
+}
+
+input:-webkit-autofill, select:-webkit-autofill, textarea:-webkit-autofill {
+  // box-shadow: 0 0 0 30px #1f86c6 inset;
+  box-shadow: 0 0 0 30px $white inset !important;
+}
+
+.error {
+  border-color: $red !important;
+}
+
+.messages-error {
+  @include position(absolute, null, 0, -10px);
+  @include font(null, 12px, $red);
+  padding: 2px 6px;
+  margin-top: 2px;
+  display: none;
+
+  >div {
+    padding: 2px 6px;
+    background: $white;
+    border-radius: 3px;
+    box-shadow: 1px 1px 3px $red;
+  }
+}
+
+.msg-input,
+.msg-textarea {
+  position: relative;
+  span[role="alert"] {
+    @include position(absolute, $bottom: -15px, $left: 0);
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px $red;
+    background: $white;
+  }
+}
+div.wpcf7-validation-errors,
+div.wpcf7-acceptance-missing {
+  border-color: $red;
+}
+
+form.sent {
+  .form-group,
+  .btn {
+    display: none;
+  }
+  .wpcf7-mail-sent-ok {
+    border: 0;
+    text-align: center;
+    background: transparent;
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+.form-group {
+  position: relative;
+  color: $white;
+
+  label {
+    position: relative;
+    padding: 0 1.25rem;
+  }
+
+  &.error {
+    border: none !important;
+    .form-control {
+      border-color: $red;
+    }
+    .messages-error {
+      display: block;
+    }
+  }
+}
+
+.form-control:focus {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.btn-form {
+  background-color: $white;
+  color: $black;
+  &:hover {
+    background-color: darken($white, 20);
+  }
+}

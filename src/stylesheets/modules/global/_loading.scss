@@ -1,0 +1,46 @@
+/* loadding home */
+
+.loader {
+  @include position(fixed, 50%, null, null, 50%, 99999);
+  transform: translate(-50%, -50%);
+}
+
+.over-loader {
+  @include position(fixed, 0, 0, 0, 0, 99999);
+  background: $color-c6;
+}
+
+// demo loader
+.hide-loader {
+  display: none;
+}
+
+// end demo
+.loader-item {
+  @include sizeEx(50px, 40px);
+  margin: 100px auto;
+  font-size: 10px;
+  text-align: center;
+}
+
+.spinner {
+  position: relative;
+  @include sizeEx(90px);
+  margin: 100px auto;
+}
+
+.loader-logo {
+  @include position(absolute, 0, 0, 0, 0, null);
+  @include sizeEx(100%);
+  animation: logo-pulse 2s infinite ease-in-out;
+}
+
+@keyframes logo-pulse {
+  0%,
+  100% {
+    transform: scale(0.7);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
